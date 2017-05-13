@@ -1,0 +1,1 @@
+[{"message":"One of your pickups have cancelled\nReason:Optional[I dislike rides]","userId":"5d860b26-9aa8-482b-bf4e-9d5ac3c91961"},{"message":"One of your drivers have cancelled your ride\nReason:Optional[I dislike people]","userId":"5d860b26-9aa8-482b-bf4e-9d5ac3c91961"}]

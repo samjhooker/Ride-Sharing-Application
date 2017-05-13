@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
+   <children>
+      <Label alignment="CENTER" contentDisplay="TOP" layoutX="35.0" layoutY="38.0" maxHeight="75.0" maxWidth="75.0" minHeight="75.0" minWidth="75.0" prefHeight="75.0" prefWidth="75.0" style="-fx-background-color: #303030;" text="UC SHARE" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font name="Avenir Light" size="13.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutY="75.0" prefHeight="326.0" prefWidth="75.0" style="-fx-background-color: #303030;" AnchorPane.bottomAnchor="-0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="75.0">
+         <children>
+            <ImageView fx:id="driverButton" fitHeight="60.0" fitWidth="60.0" layoutX="8.0" layoutY="9.0" onMouseClicked="#driverButtonPressed" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="14.0">
+               <image>
+                  <Image url="@img/driverIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="driverButton1" fitHeight="60.0" fitWidth="60.0" layoutX="9.0" layoutY="90.0" onMouseClicked="#passengerButtonPressed" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="89.0">
+               <image>
+                  <Image url="@img/passengerIcon.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="nameLabel" alignment="CENTER" layoutX="3.0" layoutY="227.0" prefHeight="19.0" prefWidth="60.0" textFill="#dadada" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0">
+               <font>
+                  <Font name="Avenir Light" size="13.0" />
+               </font>
+            </Label>
+            <Circle fx:id="profilePictureCircle" fill="WHITE" layoutX="38.0" layoutY="287.0" radius="30.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="7.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="contentAnchorPane" layoutX="86.0" layoutY="9.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+   </children>
+</AnchorPane>

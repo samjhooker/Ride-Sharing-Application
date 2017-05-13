@@ -1,0 +1,11 @@
+.list-view .list-cell {
+    -fx-background-color: transparent;
+    -fx-cell-size: 36 ;
+    -fx-text-fill: white;
+    -fx-font-size: 120%;
+    -fx-font-family: "Avenir Light";
+}
+
+.list-view .list-cell:selected {
+    -fx-background-color: #564c96;
+}

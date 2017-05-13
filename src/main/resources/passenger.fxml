@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PassengerController">
+    <children>
+        <ListView fx:id="actionList" layoutY="65.0" prefHeight="335.0" prefWidth="250.0" style="-fx-background-color: #3b2f87;" stylesheets="@css/menuLists.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="75.0" />
+        <AnchorPane fx:id="passengerContentAnchorPane" layoutX="250.0" prefHeight="400.0" prefWidth="353.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="-0.0" AnchorPane.topAnchor="0.0" />
+        <Label alignment="CENTER" layoutX="80.0" layoutY="26.0" prefHeight="75.0" prefWidth="250.0" style="-fx-background-color: #3b2f87;" text="PASSENGER" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <font>
+                <Font name="Avenir Light" size="13.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>

@@ -1,0 +1,103 @@
+package controllers;
+
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.CheckBoxListCell;
+import javafx.util.Callback;
+import models.Route;
+import models.Stop;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+
+/**
+ * Created by samuelhooker on 20/03/17.
+ */
+public class CreateRouteController implements Initializable {
+
+    @FXML
+    private TextField numberTextField;
+    @FXML
+    private TextField addressTextField;
+    @FXML
+    private TextField routeNameTextField;
+    @FXML
+    private ListView routeListView;
+    @FXML
+    private Label submitRouteFeedbackLabel;
+    @FXML
+    private TextField suburbTextField;
+
+    private ObservableList<Stop> selectedStops = FXCollections.observableArrayList();
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        this.routeListView.getSelectionModel().clearSelection();
+
+        routeListView.setCellFactory(CheckBoxListCell.forListView(new Callback<Stop, ObservableValue<Boolean>>() {
+            @Override
+            public ObservableValue<Boolean> call(Stop item) {
+                BooleanProperty observable = new SimpleBooleanProperty();
+                observable.addListener((obs, wasSelected, isNowSelected) ->
+                        stopSelected(item)
+
+                );
+                return observable ;
+            }
+        }));
+        routeListView.setItems(DataStore.getStops());
+
+
+
+    }
+
+    private void stopSelected(Stop stop){
+        if(selectedStops.contains(stop)){
+            selectedStops.remove(stop);
+        }else{
+            selectedStops.add(stop);
+        }
+    }
+
+    @FXML
+    private void stopPointSubmitPressed(){
+        if(!numberTextField.getText().isEmpty()
+                && !addressTextField.getText().isEmpty()
+                && !suburbTextField.getText().isEmpty()){
+            Stop stop = new Stop(numberTextField.getText(), addressTextField.getText(), suburbTextField.getText(), DataStore.currentUser.getUserId());
+            DataStore.stops.add(stop);
+            numberTextField.setText("");
+            addressTextField.setText("");
+            routeListView.setItems(DataStore.getStops());
+        }
+    }
+
+    @FXML
+    private void submitRouteButtonPressed(){
+        if(!routeNameTextField.getText().isEmpty() &&
+                selectedStops.size() != 0){
+            Route route = new Route(selectedStops, routeNameTextField.getText(), DataStore.currentUser.getUserId());
+            DataStore.routes.add(route);
+            submitRouteFeedbackLabel.setText("Route Creation Successful");
+
+            routeNameTextField.setText("");
+            System.out.println(DataStore.routes);
+        }
+        else {
+            submitRouteFeedbackLabel.setText("Route Name and Points Required");
+
+        }
+
+    }
+
+}

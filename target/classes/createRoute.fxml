@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="594.0" prefWidth="684.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateRouteController">
+   <children>
+      <Label layoutX="35.0" prefHeight="75.0" prefWidth="152.0" text="CREATE STOP POINTS" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font name="Avenir Light" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="numberTextField" layoutX="38.0" layoutY="77.0" prefHeight="27.0" prefWidth="71.0" promptText="123a" AnchorPane.leftAnchor="38.0" />
+      <TextField fx:id="addressTextField" layoutX="115.0" layoutY="77.0" prefHeight="27.0" prefWidth="134.0" promptText="Example St" />
+      <Label layoutX="39.0" layoutY="107.0" text="number">
+         <font>
+            <Font name="Avenir Light" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="116.0" layoutY="107.0" text="address">
+         <font>
+            <Font name="Avenir Light" size="13.0" />
+         </font>
+      </Label>
+      <Button fx:id="stopPointSubmit" layoutX="38.0" layoutY="135.0" mnemonicParsing="false" onAction="#stopPointSubmitPressed" prefHeight="27.0" prefWidth="230.0" text="Submit" AnchorPane.leftAnchor="38.0" />
+      <Label layoutX="36.0" layoutY="203.0" prefHeight="75.0" prefWidth="152.0" text="CREATE A ROUTE" AnchorPane.leftAnchor="36.0">
+         <font>
+            <Font name="Avenir Light" size="13.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="56.0" layoutY="203.0" prefHeight="1.0" prefWidth="626.0" style="-fx-background-color: #808080;" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="54.0" />
+      <TextField fx:id="routeNameTextField" layoutX="36.0" layoutY="265.0" promptText="route name" AnchorPane.leftAnchor="36.0" />
+      <ListView fx:id="routeListView" layoutX="36.0" layoutY="303.0" prefHeight="153.0" prefWidth="614.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="34.0" />
+      <Button fx:id="submitRouteButton" layoutX="36.0" layoutY="468.0" mnemonicParsing="false" onAction="#submitRouteButtonPressed" prefHeight="27.0" prefWidth="230.0" text="Submit Route" AnchorPane.leftAnchor="36.0" />
+      <Label fx:id="submitRouteFeedbackLabel" layoutX="36.0" layoutY="505.0" prefHeight="17.0" prefWidth="285.0" AnchorPane.leftAnchor="35.0" />
+      <TextField fx:id="suburbTextField" layoutX="253.0" layoutY="77.0" prefHeight="27.0" prefWidth="134.0" promptText="Suburbia" AnchorPane.leftAnchor="253.0" />
+      <Label layoutX="254.0" layoutY="105.0" text="suburb" AnchorPane.leftAnchor="254.0">
+         <font>
+            <Font name="Avenir Light" size="13.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
