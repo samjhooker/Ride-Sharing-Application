@@ -140,7 +140,7 @@ public class LoginController {
             System.out.println("got one");
 
             showWarningDialog("New Notification", notification.getMessage());
-            //DataStore.notifications.remove(notification); //removes notification
+            DataStore.notifications.remove(notification); //removes notification
         }
 
     }

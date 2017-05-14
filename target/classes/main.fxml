@@ -31,7 +31,7 @@
                   <Font name="Avenir Light" size="13.0" />
                </font>
             </Label>
-            <Circle fx:id="profilePictureCircle" fill="WHITE" layoutX="38.0" layoutY="287.0" radius="30.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="7.0" />
+            <Circle fx:id="profilePictureCircle" fill="WHITE" layoutX="38.0" layoutY="287.0" onMouseClicked="#profilePictureCirclePressed" radius="30.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="7.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="contentAnchorPane" layoutX="86.0" layoutY="9.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />

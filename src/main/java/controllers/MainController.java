@@ -177,4 +177,35 @@ public class MainController implements Initializable {
 
         nameLabel.setText(name);
     }
+
+
+    @FXML
+    private void profilePictureCirclePressed(){
+
+        if(DataStore.currentUser == null) {showLogin(); return;}
+
+        Node node;
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            URL fxmlLocation = getClass().getClassLoader().getResource("updateUser.fxml");
+            node = loader.load(fxmlLocation.openStream());
+            node.setUserData(fxmlLocation);
+            loader.setLocation(fxmlLocation);
+            contentAnchorPane.getChildren().setAll(node);
+            contentAnchorPane.setTopAnchor(node,0.0);
+            contentAnchorPane.setBottomAnchor(node,0.0);
+            contentAnchorPane.setLeftAnchor(node,0.0);
+            contentAnchorPane.setRightAnchor(node,0.0);
+
+            //DriverRegistrationConroller graphController = loader.getController();
+            //graphController.setMainController(this);
+
+
+
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 }

@@ -18,7 +18,6 @@ public class Notification {
     public UUID getUserId() {
         return userId;
     }
-
     private String message;
     private UUID userId;
 }

@@ -109,7 +109,12 @@ public class User {
         private String address;
         private String phoneNumber;
         private String photoUrl;
-        private String password;
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    private String password;
 
     public DriverUser getDriverUser() {
         return driverUser;
