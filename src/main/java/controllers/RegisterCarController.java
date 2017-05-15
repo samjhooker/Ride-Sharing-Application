@@ -1,9 +1,12 @@
 package controllers;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import models.Car;
 
@@ -44,10 +47,52 @@ public class RegisterCarController implements Initializable {
     private Label statusLabel;
 
 
+    @FXML
+    private Label updateStatusLabel;
+    @FXML
+    private DatePicker updateRegistrationExpiryDatePicker;
+    @FXML
+    private DatePicker updateWofExpiryDatePicker;
+    @FXML
+    private TextField updateLitresPer100kmTextField;
+    @FXML
+    private ListView carsListView;
+    @FXML
+    private Label makeAndModelLabel;
+    @FXML
+    private Label colorLabel;
+    @FXML
+    private Label licenceLabel;
+    @FXML
+    private Label yearLabel;
+
+    private Car selectedCar = null;
+
+
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        updateCarsList();
+
+        carsListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                selectedCar = (Car)newValue;
+                makeAndModelLabel.setText(selectedCar.toString());
+                colorLabel.setText(selectedCar.getColor());
+                licenceLabel.setText(selectedCar.getLicence());
+                yearLabel.setText("" + selectedCar.getYear());
+                updateLitresPer100kmTextField.setText("" + selectedCar.getLitresPer100km());
+
+
+            }
+        });
+
+    }
+
+    private void updateCarsList(){
+        carsListView.setItems(DataStore.getCars());
     }
 
 
@@ -97,6 +142,8 @@ public class RegisterCarController implements Initializable {
                 statusLabel.setText("Successful ");
 
                 DataStore.saveData();
+                updateCarsList();
+
 
 
             }catch (Exception e){
@@ -111,6 +158,12 @@ public class RegisterCarController implements Initializable {
 
 
 
+
+    }
+
+
+    @FXML
+    private void updateSubmitButtonPressed(){
 
     }
 }

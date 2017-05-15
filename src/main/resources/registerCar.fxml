@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegisterCarController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegisterCarController">
    <children>
       <Label layoutX="27.0" layoutY="-4.0" prefHeight="75.0" prefWidth="149.0" text="REGISTER A CAR" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="-4.0">
          <font>
@@ -29,7 +29,7 @@
             <Font name="Avenir Light" size="13.0" />
          </font>
       </Button>
-      <Label fx:id="statusLabel" layoutX="216.0" layoutY="387.0" prefHeight="19.0" prefWidth="178.0">
+      <Label fx:id="statusLabel" layoutX="32.0" layoutY="416.0" prefHeight="19.0" prefWidth="178.0">
          <font>
             <Font name="Avenir Light" size="13.0" />
          </font>
@@ -37,5 +37,34 @@
       <DatePicker fx:id="registrationExpiryDatePicker" layoutX="35.0" layoutY="276.0" promptText="Registration Expiry" />
       <DatePicker fx:id="wofExpiryDatePicker" layoutX="35.0" layoutY="311.0" promptText="WOF Expiry" />
       <TextField fx:id="litresPer100kmTextField" layoutX="35.0" layoutY="345.0" promptText="litres per 100km" />
+      <Label layoutX="283.0" layoutY="-5.0" prefHeight="75.0" prefWidth="149.0" text="MY CARS">
+         <font>
+            <Font name="Avenir Light" size="13.0" />
+         </font>
+      </Label>
+      <ListView fx:id="carsListView" layoutX="282.0" layoutY="55.0" prefHeight="98.0" prefWidth="276.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="42.0" />
+      <Label fx:id="makeAndModelLabel" layoutX="289.0" layoutY="167.0" text="Make and model">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="colorLabel" layoutX="289.0" layoutY="188.0" text="color" />
+      <Label fx:id="licenceLabel" layoutX="289.0" layoutY="208.0" text="licence" />
+      <Label fx:id="yearLabel" layoutX="289.0" layoutY="227.0" text="year" />
+      <TextField fx:id="updateLitresPer100kmTextField" layoutX="284.0" layoutY="346.0" prefHeight="25.0" prefWidth="276.0" promptText="litres per 100km" style="-fx-background-color: #f1f1f1;" AnchorPane.leftAnchor="289.0" AnchorPane.rightAnchor="35.0" />
+      <DatePicker fx:id="updateWofExpiryDatePicker" layoutX="284.0" layoutY="314.0" prefHeight="25.0" prefWidth="276.0" promptText="WOF Expiry" style="-fx-background-color: #f1f1f1;" AnchorPane.leftAnchor="289.0" AnchorPane.rightAnchor="35.0" />
+      <DatePicker fx:id="updatesRegistrationExpiryDatePicker" layoutX="284.0" layoutY="282.0" prefHeight="25.0" prefWidth="276.0" promptText="Registration Expiry" style="-fx-background-color: #f1f1f1;" AnchorPane.leftAnchor="289.0" AnchorPane.rightAnchor="35.0" />
+      <TextField fx:id="updateSeatsTextField" layoutX="284.0" layoutY="251.0" prefHeight="25.0" prefWidth="276.0" promptText="number of seats" style="-fx-background-color: #f1f1f1;" AnchorPane.leftAnchor="289.0" AnchorPane.rightAnchor="35.0" />
+      <Button fx:id="updateSubmitButton" layoutX="286.0" layoutY="383.0" mnemonicParsing="false" onAction="#updateSubmitButtonPressed" prefHeight="27.0" prefWidth="276.0" text="Update" AnchorPane.leftAnchor="289.0" AnchorPane.rightAnchor="35.0">
+         <font>
+            <Font name="Avenir Light" size="13.0" />
+         </font>
+      </Button>
+      <AnchorPane layoutX="248.0" layoutY="30.0" prefHeight="431.0" prefWidth="1.0" style="-fx-background-color: #3b2f87;" AnchorPane.bottomAnchor="35.0" AnchorPane.topAnchor="35.0" />
+      <Label fx:id="updateStatusLabel" layoutX="289.0" layoutY="416.0" prefHeight="19.0" prefWidth="178.0">
+         <font>
+            <Font name="Avenir Light" size="13.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
