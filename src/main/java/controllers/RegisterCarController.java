@@ -36,6 +36,8 @@ public class RegisterCarController implements Initializable {
     private DatePicker registrationExpiryDatePicker;
     @FXML
     private DatePicker wofExpiryDatePicker;
+    @FXML
+    private TextField litresPer100kmTextField;
 
 
     @FXML
@@ -61,7 +63,9 @@ public class RegisterCarController implements Initializable {
                 !seatsTextField.getText().isEmpty() &&
                 registrationExpiryDatePicker.getValue() != null &&
                 wofExpiryDatePicker.getValue() != null &&
-                DataStore.currentUser != null)
+                DataStore.currentUser != null &&
+                !litresPer100kmTextField.getText().isEmpty()
+                )
         {
 
             try{
@@ -74,7 +78,8 @@ public class RegisterCarController implements Initializable {
                         Integer.parseInt(seatsTextField.getText()),
                         wofExpiryDatePicker.getValue(),
                         registrationExpiryDatePicker.getValue(),
-                        DataStore.currentUser.getUserId()
+                        DataStore.currentUser.getUserId(),
+                        Double.parseDouble(litresPer100kmTextField.getText())
 
                 );
                 cars.add(car);

@@ -24,7 +24,7 @@ public class NotificationSteps {
     @Given("^that the expiry date of WOF is in (\\d+) days$")
     public void that_the_expiry_date_of_WOF_is_in_days(int arg1) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        car = new Car("a","a", "a", "a", 1990, 5, LocalDate.now().plusDays(arg1), LocalDate.now(), UUID.randomUUID());
+        car = new Car("a","a", "a", "a", 1990, 5, LocalDate.now().plusDays(arg1), LocalDate.now(), UUID.randomUUID(), 4);
     }
 
     @When("^I check whether to show a notification for WOF$")
@@ -48,7 +48,7 @@ public class NotificationSteps {
     @Given("^that the expiry date of Rego is in (\\d+) days$")
     public void that_the_expiry_date_of_Rego_is_in_days(int arg1) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        car = new Car("a","a", "a", "a", 1990, 5, LocalDate.now(), LocalDate.now().plusDays(arg1), UUID.randomUUID());
+        car = new Car("a","a", "a", "a", 1990, 5, LocalDate.now(), LocalDate.now().plusDays(arg1), UUID.randomUUID(), 4);
 
     }
 

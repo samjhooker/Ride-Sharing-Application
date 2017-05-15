@@ -1,1 +1,1 @@
-[{"name":"route","stops":[],"userId":"8d6e24ea-7084-4111-ba3c-eee7915ca436"},{"name":"Daily Route","stops":[{"suburb":"Northwood","userId":"5d860b26-9aa8-482b-bf4e-9d5ac3c91961","streetNumber":"123","address":"Streetsbury st"},{"suburb":"Northwood","userId":"5d860b26-9aa8-482b-bf4e-9d5ac3c91961","streetNumber":"33","address":"Applefield dr"}],"userId":"5d860b26-9aa8-482b-bf4e-9d5ac3c91961"}]
+[{"name":"Fun route","stops":[{"suburb":"Ilam","userId":"95aa3668-aba9-4864-b7c7-cee8c993476e","streetNumber":"1","address":"Apple st"}],"userId":"95aa3668-aba9-4864-b7c7-cee8c993476e"}]

@@ -45,7 +45,7 @@ public class DataStoreSteps {
     @Given("^a Car is created$")
     public void a_Car_is_created() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        car  = new Car("123","123","123","123",123,123, LocalDate.now(), LocalDate.now(), UUID.randomUUID());
+        car  = new Car("123","123","123","123",123,123, LocalDate.now(), LocalDate.now(), UUID.randomUUID(), 4);
         DataStore.cars.add(car);
     }
 

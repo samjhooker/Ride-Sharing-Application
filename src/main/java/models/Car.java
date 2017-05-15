@@ -91,6 +91,16 @@ public class Car {
     }
 
 
+    public double getLitresPer100km() {
+        return litresPer100km;
+    }
+
+    public void setLitresPer100km(double litresPer100km) {
+        this.litresPer100km = litresPer100km;
+    }
+
+
+
     public boolean showWofNotification(){
         //notification shown 30, 16 and 9 days before
         LocalDate now = LocalDate.now();
@@ -136,7 +146,7 @@ public class Car {
     }
 
 
-    public Car(String make, String model, String color, String licence, int year, int numberOfSeats, LocalDate wofExpiryDate, LocalDate registrationExpiryDate, UUID userID) {
+    public Car(String make, String model, String color, String licence, int year, int numberOfSeats, LocalDate wofExpiryDate, LocalDate registrationExpiryDate, UUID userID, double litresPer100km) {
         this.make = make;
         this.model = model;
         this.color = color;
@@ -146,6 +156,7 @@ public class Car {
         this.wofExpiryDate = wofExpiryDate;
         this.registrationExpiryDate = registrationExpiryDate;
         this.userID = userID;
+        this.litresPer100km = litresPer100km;
     }
 
     private String model;
@@ -156,6 +167,7 @@ public class Car {
     private LocalDate wofExpiryDate;
     private LocalDate registrationExpiryDate;
     private UUID userID;
+    private double litresPer100km;
 
     private Boolean showWof30dayNotification= false;
     private Boolean showWof16dayNotification= false;
