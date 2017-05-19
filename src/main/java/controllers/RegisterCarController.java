@@ -12,7 +12,9 @@ import models.Car;
 
 import javax.xml.crypto.Data;
 import java.lang.instrument.Instrumentation;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
+import java.security.spec.ECField;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
@@ -56,6 +58,8 @@ public class RegisterCarController implements Initializable {
     @FXML
     private TextField updateLitresPer100kmTextField;
     @FXML
+    private TextField updateSeatsTextField;
+    @FXML
     private ListView carsListView;
     @FXML
     private Label makeAndModelLabel;
@@ -84,6 +88,9 @@ public class RegisterCarController implements Initializable {
                 licenceLabel.setText(selectedCar.getLicence());
                 yearLabel.setText("" + selectedCar.getYear());
                 updateLitresPer100kmTextField.setText("" + selectedCar.getLitresPer100km());
+                updateRegistrationExpiryDatePicker.setValue(selectedCar.getRegistrationExpiryDate());
+                updateWofExpiryDatePicker.setValue(selectedCar.getWofExpiryDate());
+                updateSeatsTextField.setText(""+selectedCar.getNumberOfSeats());
 
 
             }
@@ -164,6 +171,16 @@ public class RegisterCarController implements Initializable {
 
     @FXML
     private void updateSubmitButtonPressed(){
+        try {
+            selectedCar.setLitresPer100km(Double.parseDouble(updateLitresPer100kmTextField.getText()));
+            selectedCar.setRegistrationExpiryDate(updateRegistrationExpiryDatePicker.getValue());
+            selectedCar.setWofExpiryDate(updateWofExpiryDatePicker.getValue());
+            selectedCar.setNumberOfSeats(Integer.parseInt(updateSeatsTextField.getText()));
+            updateStatusLabel.setText("Saved Successfully");
+        } catch (Exception e){
+            updateStatusLabel.setText("Values are invalid");
+        }
+
 
     }
 }
