@@ -1,5 +1,7 @@
 package models;
 
+import controllers.DataStore;
+
 import java.util.UUID;
 
 /**
@@ -7,38 +9,12 @@ import java.util.UUID;
  */
 public class Stop {
 
-    public Stop(String streetNumber, String address, String suburb, UUID userId) {
-        this.streetNumber = streetNumber;
+    public Stop(String address, Double latitude, Double longitude) {
         this.address = address;
-        this.suburb = suburb;
-        this.userId = userId;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.userId = DataStore.currentUser.getUserId();
     }
-
-    public String getStreetNumber() {
-        return streetNumber;
-    }
-
-    public void setStreetNumber(String streetNumber) {
-        this.streetNumber = streetNumber;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getSuburb() {
-        return suburb;
-    }
-
-    public void setSuburb(String suburb) {
-        this.suburb = suburb;
-    }
-
-    private String suburb;
 
     @Override
     public boolean equals(Object obj) {
@@ -55,23 +31,18 @@ public class Stop {
 
     @Override
     public String toString() {
-        return streetNumber + " " + address+ ", " + suburb;
+        return address;
     }
-
-
-
 
     public UUID getUserId() {
         return userId;
     }
 
-    public void setUserId(UUID userId) {
-        this.userId = userId;
-    }
-
     private UUID userId;
-    private String streetNumber;
     private String address;
+    private Double latitude;
+    private Double longitude;
+
 
 
 

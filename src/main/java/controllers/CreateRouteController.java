@@ -14,6 +14,7 @@ import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.util.Callback;
 import models.Route;
 import models.Stop;
+import utils.MapUtils;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -74,10 +75,20 @@ public class CreateRouteController implements Initializable {
         if(!numberTextField.getText().isEmpty()
                 && !addressTextField.getText().isEmpty()
                 && !suburbTextField.getText().isEmpty()){
-            Stop stop = new Stop(numberTextField.getText(), addressTextField.getText(), suburbTextField.getText(), DataStore.currentUser.getUserId());
-            DataStore.stops.add(stop);
+
+            Stop stop = MapUtils.getStopFromAddress(numberTextField.getText() + " "+
+                                                            addressTextField.getText() + ", "+
+                                                            suburbTextField.getText());
+
             numberTextField.setText("");
             addressTextField.setText("");
+            suburbTextField.setText("");
+            if(stop != null){
+                DataStore.stops.add(stop);
+            }else{
+                suburbTextField.setText("Invalid Address");
+            }
+
             routeListView.setItems(DataStore.getStops());
         }
     }

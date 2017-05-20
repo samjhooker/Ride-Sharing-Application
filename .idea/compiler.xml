@@ -6,10 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="ride-sharing-system" />
         <module name="Seng301RideShare" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="ride-sharing-system" target="1.8" />
       <module name="Seng301RideShare" target="1.8" />
     </bytecodeTargetLevel>
   </component>

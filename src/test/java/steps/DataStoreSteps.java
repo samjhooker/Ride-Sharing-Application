@@ -52,7 +52,7 @@ public class DataStoreSteps {
     @Given("^a Stop is created$")
     public void a_Stop_is_created() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        Stop stop = new Stop("123", "apple", "suburbia", UUID.randomUUID());
+        Stop stop = new Stop("123 apple suburbia", 44.0, 44.0);
         DataStore.stops.add(stop);
 
     }
