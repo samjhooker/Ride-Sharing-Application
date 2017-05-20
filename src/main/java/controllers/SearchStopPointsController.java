@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import models.*;
+import utils.MapUtils;
 
 import javax.xml.crypto.Data;
 import java.net.URL;
@@ -50,9 +51,12 @@ public class SearchStopPointsController implements Initializable{
     private Label colorLabel;
     @FXML
     private Label seatRemainingLabel;
+    @FXML
+    private Label costLabel;
 
     @FXML
     private AnchorPane tripsAnchorPane;
+
 
 
     private ObservableList<Stop> stops = FXCollections.observableArrayList();
@@ -103,6 +107,10 @@ public class SearchStopPointsController implements Initializable{
                 colorLabel.setText(trip.getCar().getColor());
                 seatsLabel.setText(Integer.toString(trip.getCar().getNumberOfSeats()));
                 seatRemainingLabel.setText(Integer.toString(option.getLiveTrip().getSeats()));
+                Stop stop = option.getStopAndTime().getStop();
+                double distance = MapUtils.distanceToUni(stop.getLatitude(), stop.getLongitude());
+                double cost = MapUtils.calculatePrice(distance, trip.getCar().getLitresPer100km());
+                costLabel.setText(String.format("$%.2f", cost));
 
                 selectedLiveTrip = option.getLiveTrip();
                 selectedStopAndTime = option.getStopAndTime();

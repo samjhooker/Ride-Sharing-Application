@@ -9,10 +9,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextInputDialog;
-import models.LiveTrip;
-import models.Notification;
-import models.Pickup;
-import models.User;
+import models.*;
+import utils.MapUtils;
 
 import java.net.URL;
 import java.util.Optional;
@@ -38,6 +36,8 @@ public class PassengerRidesController implements Initializable {
     private Label driverLabel;
     @FXML
     private Label carLabel;
+    @FXML
+    private Label costLabel;
 
 
     @FXML
@@ -58,8 +58,13 @@ public class PassengerRidesController implements Initializable {
 
                     timeLabel.setText(newValue.getPickup().getStopAndTime().getTime());
                     dateLabel.setText(newValue.getLiveTrip().getDate().toString());
-                    addressLabel.setText(newValue.getPickup().getStopAndTime().getStop().toString());
+                    Stop stop = newValue.getPickup().getStopAndTime().getStop();
+                    Trip trip = newValue.getLiveTrip().getTrip();
+                    addressLabel.setText(stop.toString());
                     statusLabel.setText(newValue.getPickup().getRideStatus().toString());
+                    double distance = MapUtils.distanceToUni(stop.getLatitude(), stop.getLongitude());
+                    double cost = MapUtils.calculatePrice(distance, trip.getCar().getLitresPer100km());
+                    costLabel.setText(String.format("$%.2f", cost));
 
                     UUID creatorID = newValue.getLiveTrip().getUserId();
                     User creatorUser = null;
