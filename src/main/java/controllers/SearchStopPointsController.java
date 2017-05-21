@@ -1,5 +1,12 @@
 package controllers;
 
+import com.lynden.gmapsfx.GoogleMapView;
+import com.lynden.gmapsfx.MapComponentInitializedListener;
+import com.lynden.gmapsfx.javascript.object.GoogleMap;
+import com.lynden.gmapsfx.javascript.object.LatLong;
+import com.lynden.gmapsfx.javascript.object.MapOptions;
+import com.lynden.gmapsfx.javascript.object.Marker;
+import com.lynden.gmapsfx.javascript.object.MarkerOptions;
 import controllers.DataStore;
 import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
@@ -25,7 +32,11 @@ import java.util.ResourceBundle;
 /**
  * Created by samuelhooker on 4/04/17.
  */
-public class SearchStopPointsController implements Initializable{
+public class SearchStopPointsController implements Initializable, MapComponentInitializedListener{
+
+    private static final double UC_LATITUDE = -43.5235;
+    private static final double UC_LONGITUDE = 172.5839;
+
 
     @FXML
     private ListView stopsListView;
@@ -56,6 +67,11 @@ public class SearchStopPointsController implements Initializable{
 
     @FXML
     private AnchorPane tripsAnchorPane;
+
+    @FXML
+    private GoogleMapView mapView;
+
+    private GoogleMap map;
 
 
 
@@ -117,9 +133,55 @@ public class SearchStopPointsController implements Initializable{
             }
         });
 
+        mapView.addMapInializedListener(this);
 
 
     }
+
+
+    @Override
+    public void mapInitialized() {
+
+
+
+        //Set the initial properties of the map.
+        MapOptions mapOptions = new MapOptions();
+
+        mapOptions.center(new LatLong(UC_LATITUDE, UC_LONGITUDE))
+                .overviewMapControl(false)
+                .panControl(false)
+                .rotateControl(false)
+                .scaleControl(false)
+                .streetViewControl(false)
+                .zoomControl(false)
+                .zoom(12);
+
+        map = mapView.createMap(mapOptions);
+        loadPointsOnMap();
+
+
+    }
+
+    private void loadPointsOnMap(){
+        System.out.println("reloading");
+        map.clearMarkers();
+        ObservableList<Stop> stops = stopsListView.getItems();
+        for(Stop stop : stops){
+            LatLong latLong = new LatLong(stop.getLatitude(), stop.getLongitude());
+
+            MarkerOptions markerOptions = new MarkerOptions();
+            markerOptions.position(latLong);
+
+            Marker marker = new Marker(markerOptions);
+            map.addMarker( marker );
+
+
+        }
+
+    }
+
+
+
     public class TableObject{
         public LocalDate getDate() {
             return date;
@@ -175,6 +237,7 @@ public class SearchStopPointsController implements Initializable{
             }
         }
         stopsListView.setItems(filteredStops);
+        loadPointsOnMap();
     }
 
     @FXML

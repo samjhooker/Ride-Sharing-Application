@@ -8,7 +8,12 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import com.lynden.gmapsfx.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SearchStopPointsController">
    <children>
@@ -17,7 +22,7 @@
             <Font name="Avenir Light" size="13.0" />
          </font>
       </Label>
-      <ListView fx:id="stopsListView" layoutX="35.0" layoutY="97.0" prefHeight="246.0" prefWidth="200.0" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="97.0" />
+      <ListView fx:id="stopsListView" layoutX="35.0" layoutY="97.0" prefHeight="246.0" prefWidth="200.0" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="97.0" />
       <TextField fx:id="searchTextField" layoutX="35.0" layoutY="67.0" prefHeight="27.0" prefWidth="530.0" promptText="search" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.0" />
       <Button fx:id="findDatesAndTimesButton" layoutX="35.0" layoutY="351.0" mnemonicParsing="false" onAction="#findDatesAndTimesButtonPressed" text="Find Dates and Times" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="35.0" />
       <AnchorPane fx:id="tripsAnchorPane" layoutX="35.0" layoutY="67.0" prefHeight="276.0" prefWidth="530.0" style="-fx-background-color: white;" visible="false" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="67.0">
@@ -39,6 +44,16 @@
             <Label fx:id="seatsLabel" layoutX="325.0" layoutY="132.0" />
             <Label fx:id="seatRemainingLabel" layoutX="327.0" layoutY="175.0" />
             <Button fx:id="bookRideButton" layoutX="436.0" layoutY="235.0" mnemonicParsing="false" onAction="#bookRideButtonPressed" text="Book Ride" AnchorPane.bottomAnchor="-35.0" AnchorPane.rightAnchor="0.0" />
+            <Label fx:id="costLabel" layoutX="325.0" layoutY="200.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="238.0" layoutY="97.0" prefHeight="246.0" prefWidth="329.0" style="-fx-background-color: green;" AnchorPane.leftAnchor="238.0" AnchorPane.rightAnchor="35.0" AnchorPane.bottomAnchor="57.0" AnchorPane.topAnchor="97.0">
+         <children>
+            <GoogleMapView fx:id="mapView" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
          </children>
       </AnchorPane>
    </children>
