@@ -9,6 +9,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import models.Car;
+import models.LiveTrip;
+import models.Notification;
+import models.Pickup;
 
 import javax.xml.crypto.Data;
 import java.lang.instrument.Instrumentation;
@@ -19,6 +22,9 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import static controllers.DataStore.cars;
+import static controllers.DataStore.notifications;
+import static controllers.DataStore.pickups;
+import static java.lang.Math.abs;
 
 /**
  * Created by samuelhooker on 20/03/17.
@@ -126,12 +132,12 @@ public class RegisterCarController implements Initializable {
                         modelTextField.getText(),
                         colorTextField.getText(),
                         licenceTextField.getText(),
-                        Integer.parseInt(yearTextField.getText()),
-                        Integer.parseInt(seatsTextField.getText()),
+                        abs(Integer.parseInt(yearTextField.getText())),
+                        abs(Integer.parseInt(seatsTextField.getText())),
                         wofExpiryDatePicker.getValue(),
                         registrationExpiryDatePicker.getValue(),
                         DataStore.currentUser.getUserId(),
-                        Double.parseDouble(litresPer100kmTextField.getText())
+                        abs(Double.parseDouble(litresPer100kmTextField.getText()))
 
                 );
                 cars.add(car);
@@ -172,15 +178,29 @@ public class RegisterCarController implements Initializable {
     @FXML
     private void updateSubmitButtonPressed(){
         try {
-            selectedCar.setLitresPer100km(Double.parseDouble(updateLitresPer100kmTextField.getText()));
+            Double l100km = Double.parseDouble(updateLitresPer100kmTextField.getText());
+            if(selectedCar.getNumberOfSeats() != l100km){
+                selectedCar.setLitresPer100km(abs(l100km));
+                notifyPassengersOfPriceChange(selectedCar);
+            }
             selectedCar.setRegistrationExpiryDate(updateRegistrationExpiryDatePicker.getValue());
             selectedCar.setWofExpiryDate(updateWofExpiryDatePicker.getValue());
-            selectedCar.setNumberOfSeats(Integer.parseInt(updateSeatsTextField.getText()));
+            selectedCar.setNumberOfSeats(abs(Integer.parseInt(updateSeatsTextField.getText())));
             updateStatusLabel.setText("Saved Successfully");
         } catch (Exception e){
             updateStatusLabel.setText("Values are invalid");
         }
 
 
+    }
+
+    private void notifyPassengersOfPriceChange(Car car){
+        for(LiveTrip liveTrip: DataStore.getLiveTrips()){
+            if(liveTrip.getTrip().getCar().equals(car)){
+                for(Pickup pickup: liveTrip.getPickups()){
+                    DataStore.notifications.add(new Notification("One of your booked trips have changed the fuel consumption of their vehicle\nThis will change the price accordingly.", pickup.getUserID()));
+                }
+            }
+        }
     }
 }
