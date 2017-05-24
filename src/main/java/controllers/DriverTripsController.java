@@ -17,6 +17,8 @@ import java.beans.EventHandler;
 import java.net.URL;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -155,11 +157,15 @@ public class DriverTripsController implements Initializable {
                 stopTableColumn.setCellValueFactory(new PropertyValueFactory<>("stop"));
                 timeTableColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
                 timeTableColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-                timeTableColumn.setOnEditCommit(new javafx.event.EventHandler<TableColumn.CellEditEvent<StopAndTime, String>>() {
-                    @Override
-                    public void handle(TableColumn.CellEditEvent<StopAndTime, String> event) {
-                        ((StopAndTime) event.getTableView().getItems().get(event.getTablePosition().getRow())).setTime(event.getNewValue());
+                timeTableColumn.setOnEditCommit(event -> {
+                    StopAndTime st  = event.getTableView().getItems().get(event.getTablePosition().getRow());
+                    try{
+                        LocalTime localTime = LocalTime.parse(event.getNewValue());
+                        st.setTime(localTime.toString());
+                    }catch (Exception e){
+                        st.setTime("Invalid");
                     }
+                    //.setTime(event.getNewValue());
                 });
 
 
@@ -211,8 +217,10 @@ public class DriverTripsController implements Initializable {
         }
 
         for(StopAndTime stop : stopAndTimes){
-            if(stop.getTime().equals("")){
-                submitButtonFeedbackLabel.setText("Please Select A Time for Each Stop");
+            if(stop.getTime().equals("") || stop.getTime().equals("Invalid")){
+                createTripTableView.setItems(null);
+                createTripTableView.setItems(stopAndTimes);
+                submitButtonFeedbackLabel.setText("Please Select A Valid HH:MM Time for Each Stop");
                 return;
             }
         }

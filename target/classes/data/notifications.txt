@@ -1,1 +1,1 @@
-[{"message":"One of your booked trips have changed the fuel consumption of their vehicle\nThis will change the price accordingly.","userId":"2934a6fd-7997-4fd6-b82c-9b08f62e56cf"}]
+[]

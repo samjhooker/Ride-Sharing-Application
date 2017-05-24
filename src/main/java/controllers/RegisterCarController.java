@@ -177,27 +177,41 @@ public class RegisterCarController implements Initializable {
 
     @FXML
     private void updateSubmitButtonPressed(){
-        try {
-            Double l100km = Double.parseDouble(updateLitresPer100kmTextField.getText());
-            if(selectedCar.getNumberOfSeats() != l100km){
-                selectedCar.setLitresPer100km(abs(l100km));
-                notifyPassengersOfPriceChange(selectedCar);
 
-                for(LiveTrip liveTrip: DataStore.getLiveTrips()) {
-                    if (liveTrip.getTrip().getCar().toString().equals(selectedCar.toString())) {
-                        liveTrip.getTrip().getCar().setLitresPer100km(abs(l100km));
-                    }
-                }
-            }
-            selectedCar.setRegistrationExpiryDate(updateRegistrationExpiryDatePicker.getValue());
-            selectedCar.setWofExpiryDate(updateWofExpiryDatePicker.getValue());
-            selectedCar.setNumberOfSeats(abs(Integer.parseInt(updateSeatsTextField.getText())));
+        boolean result = updateCar(selectedCar,
+                updateWofExpiryDatePicker.getValue(),
+                updateRegistrationExpiryDatePicker.getValue(),
+                updateSeatsTextField.getText(),
+                updateLitresPer100kmTextField.getText());
+        if(result){
             updateStatusLabel.setText("Saved Successfully");
-        } catch (Exception e){
+        } else{
             updateStatusLabel.setText("Values are invalid");
         }
 
 
+    }
+
+    public boolean updateCar(Car car, LocalDate wofExpiry, LocalDate regoExpiry, String seats, String litersPer100km){
+        try {
+            Double l100km = Double.parseDouble(litersPer100km);
+            if(car.getLitresPer100km() != l100km){
+                car.setLitresPer100km(abs(l100km));
+                notifyPassengersOfPriceChange(car);
+
+                for(LiveTrip liveTrip: DataStore.getLiveTrips()) {
+                    if (liveTrip.getTrip().getCar().toString().equals(car.toString())) {
+                        liveTrip.getTrip().getCar().setLitresPer100km(abs(l100km));
+                    }
+                }
+            }
+            car.setRegistrationExpiryDate(regoExpiry);
+            car.setWofExpiryDate(wofExpiry);
+            car.setNumberOfSeats(abs(Integer.parseInt(seats)));
+            return true;
+        } catch (Exception e){
+            return false;
+        }
     }
 
     private void notifyPassengersOfPriceChange(Car car){
