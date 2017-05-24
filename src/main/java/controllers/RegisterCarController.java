@@ -182,6 +182,12 @@ public class RegisterCarController implements Initializable {
             if(selectedCar.getNumberOfSeats() != l100km){
                 selectedCar.setLitresPer100km(abs(l100km));
                 notifyPassengersOfPriceChange(selectedCar);
+
+                for(LiveTrip liveTrip: DataStore.getLiveTrips()) {
+                    if (liveTrip.getTrip().getCar().toString().equals(selectedCar.toString())) {
+                        liveTrip.getTrip().getCar().setLitresPer100km(abs(l100km));
+                    }
+                }
             }
             selectedCar.setRegistrationExpiryDate(updateRegistrationExpiryDatePicker.getValue());
             selectedCar.setWofExpiryDate(updateWofExpiryDatePicker.getValue());
@@ -196,7 +202,7 @@ public class RegisterCarController implements Initializable {
 
     private void notifyPassengersOfPriceChange(Car car){
         for(LiveTrip liveTrip: DataStore.getLiveTrips()){
-            if(liveTrip.getTrip().getCar().equals(car)){
+            if(liveTrip.getTrip().getCar().toString().equals(car.toString())){
                 for(Pickup pickup: liveTrip.getPickups()){
                     DataStore.notifications.add(new Notification("One of your booked trips have changed the fuel consumption of their vehicle\nThis will change the price accordingly.", pickup.getUserID()));
                 }

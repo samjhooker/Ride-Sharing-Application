@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 import javafx.stage.Stage;
+import models.Trip;
 
 import javax.xml.crypto.Data;
 
@@ -18,7 +19,6 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
 
         DataStore.loadData();
-        System.out.println(DataStore.liveTrips);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root, 800, 600);
