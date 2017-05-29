@@ -38,6 +38,8 @@ public class LoginController {
     private PasswordField registerConfirmPasswordTextField;
     @FXML
     private Label registerErrorLabel;
+    @FXML
+    private TextField studentIdTextField;
 
 
     public void setMainController(MainController mainController) {
@@ -85,10 +87,12 @@ public class LoginController {
             return;
         }
         if(registerPasswordTextField.getText().equals(registerConfirmPasswordTextField.getText()) &&
-                !registerPasswordTextField.getText().isEmpty()){
+                !registerPasswordTextField.getText().isEmpty() &&
+                !studentIdTextField.getText().isEmpty()){
             //password valid
 
             User user = new User(
+                    studentIdTextField.getText(),
                     registerNameTextField.getText(),
                     registerEmailTextField.getText(),
                     registerAddressTextField.getText(),
@@ -111,7 +115,7 @@ public class LoginController {
             mainController.passengerButtonPressed();
             mainController.showUserDetails();
         }else{
-            registerErrorLabel.setText("Passwords Must Match");
+            registerErrorLabel.setText("Passwords Must Match and all fields should be entered");
             return;
         }
 

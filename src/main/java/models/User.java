@@ -23,7 +23,6 @@ public class User {
         return userId;
     }
 
-
     public String getName() {
         return name;
     }
@@ -81,8 +80,9 @@ public class User {
         }
     }
 
-    public User(String name, String email, String address, String phoneNumber, String photoUrl, String password) {
+    public User(String studentId, String name, String email, String address, String phoneNumber, String photoUrl, String password) {
         String[] parts = email.split("@");
+        this.studentId = studentId;
         this.username = parts[0];
         this.userId = UUID.randomUUID();
         this.name = name;
@@ -98,17 +98,14 @@ public class User {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     private String username;
     private UUID userId;
-        private String name;
-        private String email;
-        private String address;
-        private String phoneNumber;
-        private String photoUrl;
+    private String name;
+    private String email;
+    private String address;
+    private String phoneNumber;
+    private String photoUrl;
+    private String studentId;
 
     public void setPassword(String password) {
         this.password = password;
@@ -131,4 +128,7 @@ public class User {
         DataStore.currentUser = this;
     }
 
+    public String getStudentId() {
+        return studentId;
+    }
 }

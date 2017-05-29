@@ -12,7 +12,7 @@ import org.junit.Before;
  * Created by samuelhooker on 23/04/17.
  */
 public class UserSteps {
-    User user = new User("Joe", "email", "address", "phone", "pic", "passwor  ");;
+    User user = new User("63266757","Joe", "email", "address", "phone", "pic", "passwor  ");;
 
     String password;
     boolean passwordVerified;
@@ -21,14 +21,14 @@ public class UserSteps {
 
     @Before
     public void createUser(){
-        user= new User("Joe", "email", "address", "phone", "pic", "passwor  ");
+        user= new User("63266757","Joe", "email", "address", "phone", "pic", "passwor  ");
     }
 
 
     @Given("^the password is \"([^\"]*)\"$")
     public void the_password_is(String arg1) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        user = new User("Joe", "email", "address", "phone", "pic", arg1);
+        user = new User("63266757","Joe", "email", "address", "phone", "pic", arg1);
     }
 
     @When("^the password \"([^\"]*)\" is verified$")

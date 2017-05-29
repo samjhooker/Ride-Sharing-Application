@@ -48,7 +48,7 @@ public class UpdateUserController implements Initializable {
     private void displayUserDetails(){
         User currentUser = DataStore.currentUser;
 
-        usernameLabel.setText(currentUser.getUsername());
+        usernameLabel.setText(currentUser.getUsername()+"         "+currentUser.getStudentId());
         nameTextField.setText(currentUser.getName());
         emailTextField.setText(currentUser.getEmail());
         phoneTextField.setText(currentUser.getPhoneNumber());
