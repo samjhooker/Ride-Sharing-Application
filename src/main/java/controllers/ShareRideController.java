@@ -137,7 +137,10 @@ public class ShareRideController implements Initializable {
                     (trip.getDays().contains(date.getDayOfWeek()))){
                 LiveTrip liveTrip = new LiveTrip(trip, date, seats, DataStore.currentUser.getUserId());
                 DataStore.liveTrips.add(liveTrip);
-                tripsTableView.setItems(DataStore.getLiveTrips());
+                try{
+                    tripsTableView.setItems(DataStore.getLiveTrips());
+                }catch(NullPointerException e){
+                }
 
             }
         }

@@ -13,7 +13,10 @@ public class Stop {
         this.address = address;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.userId = DataStore.currentUser.getUserId();
+        try{
+            this.userId = DataStore.currentUser.getUserId();
+        }catch(NullPointerException e){}
+
     }
 
     @Override

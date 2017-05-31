@@ -62,7 +62,7 @@
             <Button fx:id="submitButton" layoutX="35.0" layoutY="660.0" mnemonicParsing="false" onAction="#submitButtonPressed" prefWidth="150.0" text="Submit" AnchorPane.leftAnchor="35.0" />
             <Label fx:id="submitButtonFeedbackLabel" layoutX="194.0" layoutY="665.0" prefHeight="17.0" prefWidth="238.0" AnchorPane.leftAnchor="194.0" />
             <ComboBox fx:id="directionComboBox" layoutX="198.0" layoutY="263.0" prefWidth="150.0" promptText="Direction" />
-            <Label layoutX="36.0" layoutY="295.0" text="double click to add a time for each stop">
+            <Label layoutX="36.0" layoutY="295.0" text="double click to add a time for each stop. Must be in 24h HH:MM format, eg, 09:30">
                <font>
                   <Font size="10.0" />
                </font>

@@ -19,7 +19,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.security.spec.ECField;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
+import java.util.UUID;
 
 import static controllers.DataStore.cars;
 import static controllers.DataStore.notifications;
@@ -111,7 +113,7 @@ public class RegisterCarController implements Initializable {
 
 
     @FXML
-    public void submitButtonPressed(){
+    private void submitButtonPressed(){
 
         if(!makeTextField.getText().isEmpty() &&
             !modelTextField.getText().isEmpty() &&
@@ -126,24 +128,18 @@ public class RegisterCarController implements Initializable {
                 )
         {
 
-            try{
-                Car car = new Car(
-                        makeTextField.getText(),
-                        modelTextField.getText(),
-                        colorTextField.getText(),
-                        licenceTextField.getText(),
-                        abs(Integer.parseInt(yearTextField.getText())),
-                        abs(Integer.parseInt(seatsTextField.getText())),
-                        wofExpiryDatePicker.getValue(),
-                        registrationExpiryDatePicker.getValue(),
-                        DataStore.currentUser.getUserId(),
-                        abs(Double.parseDouble(litresPer100kmTextField.getText()))
+            Car car = createCar(makeTextField.getText(),
+                    modelTextField.getText(),
+                    colorTextField.getText(),
+                    licenceTextField.getText(),
+                    yearTextField.getText(),
+                    seatsTextField.getText(),
+                    wofExpiryDatePicker.getValue(),
+                    registrationExpiryDatePicker.getValue(),
+                    litresPer100kmTextField.getText());
+            if(car != null){
 
-                );
                 cars.add(car);
-
-                System.out.println(cars);
-
 
                 makeTextField.setText("");
                 modelTextField.setText("");
@@ -159,7 +155,7 @@ public class RegisterCarController implements Initializable {
 
 
 
-            }catch (Exception e){
+            }else{
                 statusLabel.setText("Input Invalid");
             }
 
@@ -172,6 +168,36 @@ public class RegisterCarController implements Initializable {
 
 
 
+    }
+
+
+    public Car createCar(String make, String model, String color, String licence, String year, String seats,
+                          LocalDate wofExpiryDate, LocalDate registrationExpiryDate, String litresPer100km) {
+
+        UUID userId;
+        try{
+            userId = DataStore.currentUser.getUserId();
+        }catch (NullPointerException e){
+            userId = UUID.randomUUID();
+        }
+
+        try {
+            Car car = new Car(
+                    make,
+                    model,
+                    color,
+                    licence,
+                    abs(Integer.parseInt(year)),
+                    abs(Integer.parseInt(seats)),
+                    wofExpiryDate,
+                    registrationExpiryDate,
+                    userId,
+                    abs(Double.parseDouble(litresPer100km))
+            );
+            return car;
+        }catch (Exception e){
+            return null;
+        }
     }
 
 

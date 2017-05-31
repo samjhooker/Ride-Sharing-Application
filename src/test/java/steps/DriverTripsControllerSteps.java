@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import models.Car;
 import models.Route;
 import models.Trip;
+import models.User;
 import org.junit.Assert;
 
 import java.time.DayOfWeek;
@@ -30,6 +31,8 @@ public class DriverTripsControllerSteps {
     Trip trip;
     Car mockCar = mock(Car.class);
     Route mockRoute = mock(Route.class);
+    User user = new User("123456", "abc123", "fake@uclive.ac.nz", "123 Fake rd", "0220108042", "no", "Hello");
+
 
     @Given("^the Date is today$")
     public void the_Date_is_today() throws Throwable {
@@ -77,6 +80,7 @@ public class DriverTripsControllerSteps {
     public void i_create_a_repeated_ride() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         DataStore.liveTrips.clear();
+        user.setAsCurrentUser();
         shareRideController.createLiveTrips(trip, 3);
     }
 

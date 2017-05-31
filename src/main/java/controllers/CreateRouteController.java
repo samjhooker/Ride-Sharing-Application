@@ -18,6 +18,7 @@ import utils.MapUtils;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -93,16 +94,35 @@ public class CreateRouteController implements Initializable {
         }
     }
 
+    public Route createRoute(ObservableList selectedStops, String name){
+
+        if(name != "" &&
+                selectedStops.size() != 0){
+            UUID userId;
+            try{
+                userId = DataStore.currentUser.getUserId();
+            }catch (NullPointerException e){
+                userId= UUID.randomUUID();
+            }
+
+
+            Route route = new Route(selectedStops, name, userId);
+            return route;
+        }
+        return null;
+
+
+
+    }
+
     @FXML
     private void submitRouteButtonPressed(){
-        if(!routeNameTextField.getText().isEmpty() &&
-                selectedStops.size() != 0){
-            Route route = new Route(selectedStops, routeNameTextField.getText(), DataStore.currentUser.getUserId());
+        Route route = createRoute(selectedStops, routeNameTextField.getText());
+
+        if(route != null){
             DataStore.routes.add(route);
             submitRouteFeedbackLabel.setText("Route Creation Successful");
-
             routeNameTextField.setText("");
-            System.out.println(DataStore.routes);
         }
         else {
             submitRouteFeedbackLabel.setText("Route Name and Points Required");

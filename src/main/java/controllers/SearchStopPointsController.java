@@ -29,6 +29,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.UUID;
 
 /**
  * Created by samuelhooker on 4/04/17.
@@ -278,7 +279,13 @@ public class SearchStopPointsController implements Initializable, MapComponentIn
 
     public void bookRide(LiveTrip liveTrip){
 
-        Pickup pickup = new Pickup(selectedStopAndTime, DataStore.currentUser.getUserId(), Pickup.RideStatus.BOOKED);
+        Pickup pickup;
+        try{
+            pickup = new Pickup(selectedStopAndTime, DataStore.currentUser.getUserId(), Pickup.RideStatus.BOOKED);
+        }catch (NullPointerException e){
+            //test case
+            pickup = new Pickup(selectedStopAndTime, UUID.randomUUID(), Pickup.RideStatus.BOOKED);
+        }
         List<Pickup> pickups = liveTrip.getPickups();
         pickups.add(pickup);
         liveTrip.setPickups(pickups);

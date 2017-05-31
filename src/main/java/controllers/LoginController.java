@@ -48,59 +48,80 @@ public class LoginController {
 
     MainController mainController;
 
+    public User loginUser(String username, String password){
+        if(username.equals("") || password.equals("")){
+            return null;
+        }
+        for(User user: DataStore.users) {
+            if (user.getUsername().equals(username)) {
+                if (user.checkPasswordValid(password)) {
+                    return user;
+                }
+            }
+        }
+        return null;
+    }
 
     @FXML
-    public void loginButtonPressed(){
-        if(loginEmailTextField.getText().isEmpty() || loginPasswordTextField.getText().isEmpty()){
-            loginErrorLabel.setText("Enter Email and Password");
-            return;
-        }
-        for(User user: DataStore.users){
-            if(user.getUsername().equals(loginEmailTextField.getText())){
-                if(user.checkPasswordValid(loginPasswordTextField.getText())){
-                    //log in valid
-                    user.setAsCurrentUser();
-                    loginSuccess();
-                    mainController.passengerButtonPressed();
-                    mainController.showUserDetails();
-                    return;
-                }
-                loginErrorLabel.setText("Password is Invalid");
-                return;
-            }
+    private void loginButtonPressed(){
+        User user = loginUser(loginEmailTextField.getText(), loginPasswordTextField.getText());
+        if (user != null) {
+            user.setAsCurrentUser();
 
+            loginSuccess();
+            mainController.passengerButtonPressed();
+            mainController.showUserDetails();
+        }else{
+            loginErrorLabel.setText("Login Failed. Please Try again");
         }
-        loginErrorLabel.setText("Email Not Found. Try register");
-        return;
+
+
+    }
+
+    public User createUser(String studentId, String registerName, String registerEmail, String  registerAddress,
+                           String registerPhone, String registerPhotoUrl,
+                           String password, String passwordConfirm){
+
+        if(!User.checkEmailValid(registerEmail)){
+            return null;
+        }
+        if(
+                registerName != "" &&
+                registerPhone != "" &&
+                passwordConfirm.equals(password) &&
+                password != "" &&
+                studentId != "") {
+
+            User user = new User(
+                    studentId,
+                    registerName,
+                    registerEmail,
+                    registerAddress,
+                    registerPhone,
+                    registerPhotoUrl,
+                    password
+            );
+            return user;
+        }else{
+            return null;
+        }
 
     }
 
     @FXML
     public void registerButtonPressed(){
 
-        if(registerNameTextField.getText().isEmpty() || registerPhoneTextField.getText().isEmpty()){
-            registerErrorLabel.setText("Name and Phone Number required");
-            return;
-        }
-        if(!User.checkEmailValid(registerEmailTextField.getText())){
-            registerErrorLabel.setText("Use a valid UC email address");
-            return;
-        }
-        if(registerPasswordTextField.getText().equals(registerConfirmPasswordTextField.getText()) &&
-                !registerPasswordTextField.getText().isEmpty() &&
-                !studentIdTextField.getText().isEmpty()){
-            //password valid
-
-            User user = new User(
-                    studentIdTextField.getText(),
-                    registerNameTextField.getText(),
-                    registerEmailTextField.getText(),
-                    registerAddressTextField.getText(),
-                    registerPhoneTextField.getText(),
-                    registerPhotoUrlTextField.getText(),
-                    registerPasswordTextField.getText()
-            );
-
+        User user = createUser(
+                studentIdTextField.getText(),
+                registerNameTextField.getText(),
+                registerEmailTextField.getText(),
+                registerAddressTextField.getText(),
+                registerPhoneTextField.getText(),
+                registerPhotoUrlTextField.getText(),
+                registerPasswordTextField.getText(),
+                registerConfirmPasswordTextField.getText()
+                );
+        if(user != null) {
             DataStore.users.add(user);
             user.setAsCurrentUser();
 
@@ -114,8 +135,11 @@ public class LoginController {
             loginSuccess();
             mainController.passengerButtonPressed();
             mainController.showUserDetails();
-        }else{
-            registerErrorLabel.setText("Passwords Must Match and all fields should be entered");
+
+        }
+        else
+        {
+            registerErrorLabel.setText("Invalid. Confirm valid UC email, matching passwords and all inputs entered");
             return;
         }
 
@@ -157,5 +181,8 @@ public class LoginController {
 
         alert.showAndWait();
     }
+
+
+
 
 }

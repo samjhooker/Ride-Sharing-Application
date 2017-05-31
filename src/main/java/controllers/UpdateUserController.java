@@ -68,19 +68,23 @@ public class UpdateUserController implements Initializable {
         }
     }
 
+    public void updateUser(User currentUser, String name, String email, String phone,
+                           String address, String photoUrl, String password){
+        currentUser.setName(name);
+        currentUser.setEmail(email);
+        currentUser.setPhoneNumber(phone);
+        currentUser.setAddress(address);
+        currentUser.setPhotoUrl(photoUrl);
+        if(!password.equals("")){
+            currentUser.setPassword(password);
+        }
+    }
 
     @FXML
-    public void saveButtonPressed(){
+    private void saveButtonPressed(){
         User currentUser = DataStore.currentUser;
-
-        currentUser.setName(nameTextField.getText());
-        currentUser.setEmail(emailTextField.getText());
-        currentUser.setPhoneNumber(phoneTextField.getText());
-        currentUser.setAddress(addressTextField.getText());
-        currentUser.setPhotoUrl(photoUrlTextField.getText());
-        if(!passwordTextField.getText().isEmpty()){
-            currentUser.setPassword(passwordTextField.getText());
-        }
+        updateUser(currentUser, nameTextField.getText(), emailTextField.getText(), phoneTextField.getText(),
+                addressTextField.getText(), photoUrlTextField.getText(), passwordTextField.getText());
 
         displayUserDetails();
         feedbackLabel.setText("Update Successful");
