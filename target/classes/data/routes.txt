@@ -1,1 +1,1 @@
-[{"name":"route","stops":[],"userId":"5853c30c-8020-47e2-9dca-7cc02699ec38"}]
+[{"name":"cool route","stops":[{"userId":"c0db0719-c41f-48c8-9746-371c161bd05b","address":"188 Cavendish Rd, Casebrook, Christchurch 8051, New Zealand","latitude":-43.47108799999999,"longitude":172.607315}],"userId":"c0db0719-c41f-48c8-9746-371c161bd05b"}]

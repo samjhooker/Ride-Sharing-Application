@@ -107,15 +107,20 @@ public class DataStoreSteps {
     @Then("^there should be a Route$")
     public void there_should_be_a_Route() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        Assert.assertEquals(1,DataStore.routes.size());    }
+        Assert.assertEquals(1,DataStore.routes.size());
+    }
 
     @Then("^there should be a Trip$")
     public void there_should_be_a_Trip() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        Assert.assertEquals(1,DataStore.trips.size());    }
+        Assert.assertEquals(1,DataStore.trips.size());
+    }
 
     @Then("^there should be a LiveTrip$")
     public void there_should_be_a_LiveTrip() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        Assert.assertEquals(1,DataStore.trips.size());    }
+        Assert.assertEquals(1,DataStore.trips.size());
+        clear();
+        DataStore.saveData();
+    }
 }

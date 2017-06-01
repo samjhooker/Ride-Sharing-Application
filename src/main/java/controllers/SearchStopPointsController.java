@@ -262,7 +262,8 @@ public class SearchStopPointsController implements Initializable, MapComponentIn
                     for(StopAndTime st :lt.getTrip().getStopsAndTimes()){
                         if (st.getStop().equals(selectedStop) &&
                                 lt.getSeats() >0 &&
-                                (lt.getStatus() == null || lt.getStatus().equals(LiveTrip.TripStatus.ACTIVE))){
+                                (lt.getStatus() == null || lt.getStatus().equals(LiveTrip.TripStatus.ACTIVE)) &&
+                                !lt.getUserId().equals(DataStore.currentUser.getUserId())){
                             tableData.add(new TableObject(lt.getDate(), st.getTime(), lt.getDirection(), lt, st));
                         }
                     }
